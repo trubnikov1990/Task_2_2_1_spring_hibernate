@@ -11,6 +11,9 @@ import java.util.List;
 @Repository
 public class UserDaoImp implements UserDao {
 
+   public UserDaoImp() {
+   }
+
    @Autowired
    private SessionFactory sessionFactory;
 
@@ -19,6 +22,8 @@ public class UserDaoImp implements UserDao {
       sessionFactory.getCurrentSession().save(user);
    }
 
+
+
    @Override
    @SuppressWarnings("unchecked")
    public List<User> listUsers() {
@@ -26,4 +31,15 @@ public class UserDaoImp implements UserDao {
       return query.getResultList();
    }
 
+   @Override
+   @SuppressWarnings("unchecked")
+   public List<User> listUserCar( String model, int series) {
+      TypedQuery<User> query = sessionFactory.getCurrentSession()
+          .createQuery("from User where userCar.model = :model and userCar.series = :series");
+      query.setParameter("model", model);
+      query.setParameter("series", series);
+      return query.getResultList();
+
+
+   }
 }
