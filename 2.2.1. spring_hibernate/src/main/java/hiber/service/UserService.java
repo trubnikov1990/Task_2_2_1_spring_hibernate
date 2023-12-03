@@ -1,7 +1,6 @@
 package hiber.service;
 
 import hiber.model.User;
-
 import java.util.List;
 
 public interface UserService {
@@ -9,5 +8,5 @@ public interface UserService {
 
     List<User> listUsers();
 
-    List <User> listUserCar(String name , int series);
+    User getUserWithCar (int series);
 }

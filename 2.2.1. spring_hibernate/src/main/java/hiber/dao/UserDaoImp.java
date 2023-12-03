@@ -31,15 +31,11 @@ public class UserDaoImp implements UserDao {
       return query.getResultList();
    }
 
+
    @Override
-   @SuppressWarnings("unchecked")
-   public List<User> listUserCar( String model, int series) {
-      TypedQuery<User> query = sessionFactory.getCurrentSession()
-          .createQuery("from User where userCar.model = :model and userCar.series = :series");
-      query.setParameter("model", model);
-      query.setParameter("series", series);
-      return query.getResultList();
-
-
+   public User getUserWithCar(int series) {
+      return sessionFactory.getCurrentSession()
+          .createQuery("FROM User where userCar.series = : series", User.class)
+          .setParameter("series", series).getSingleResult();
    }
 }

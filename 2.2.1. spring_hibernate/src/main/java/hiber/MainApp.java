@@ -31,11 +31,8 @@ public class MainApp {
          System.out.println();
       }
 
-      for (User user : userService.listUserCar("VW", 1)) {
-         System.out.println("Id = "+user.getId());
-         System.out.println("First Name = "+user.getFirstName());
-      }
-
+      User user = userService.getUserWithCar(1);
+      System.out.println(user.getFirstName() + " " + user.getLastName() + " owns car " + user.getUserCar());
 
       context.close();
    }
